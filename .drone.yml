@@ -1,0 +1,19 @@
+build:
+  image: alpine:latest
+  environment:
+    - TERRAFORM_VERSION=0.8.1
+    - AWS_DEFAULT_REGION=$$REGION
+    - AWS_ACCESS_KEY_ID=$$USERKEY
+    - AWS_SECRET_ACCESS_KEY=$$SECRETKEY
+  commands:
+    - apk update
+    - apk add ca-certificates openssl openssh 
+    - apk -Uuv add groff less python py-pip 
+    - wget -O terraform.zip "https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip" 
+    - unzip terraform.zip -d /bin
+    - pip install awscli
+    - mkdir -p ~/.ssh
+    - ssh-keygen -f ~/.ssh/id_rsa -t rsa -N ''
+    - terraform get
+    - terraform validate
+    - terraform plan
