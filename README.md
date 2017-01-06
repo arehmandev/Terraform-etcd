@@ -4,11 +4,11 @@
 
 This script creates:
 
-A VPC that spans 2 AZs.
-4 Subnets (2 private, 2 public. 1 of each per AZ).
-An autoscaling group and launch configuration.
-Launch config utlizes EC2 userdata template
-An IAM role for the etcd instances.
+- A VPC that spans 2 AZs.
+- 4 Subnets (2 private, 2 public. 1 of each per AZ).
+- An autoscaling group and launch configuration.
+- Launch config utlizes EC2 userdata template
+- An IAM role for the etcd instances.
 
 To use:
 
