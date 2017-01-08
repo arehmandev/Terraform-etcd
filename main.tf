@@ -47,3 +47,24 @@ module "etcd" {
 
   #subnet_azs = ["${module.base.aws_subnet.public1.id}", "${module.base.aws_subnet.public2.id}"]
 }
+
+/*
+
+module "certauth" {
+  source   = "./modules/tls/ca"
+  capem    = "certauth.pem"
+  keypem   = "certauthkey.pem"
+  iplistca = "${concat(values(var.etcd_ips), values(var.kubemaster_ips), values(var.kubenode_ips))}"
+}
+
+module "etcd-ca" {
+  source             = "./modules/tls/etcd"
+  capem              = "etcdcert.pem"
+  keypem             = "etcdkey.pem"
+  iplistca           = "${values(var.etcd_ips)}"
+  ca_cert_pem        = "${module.certauth.ca_cert_pem}"
+  ca_private_key_pem = "${module.certauth.ca_private_key_pem}"
+}
+
+*/
+
