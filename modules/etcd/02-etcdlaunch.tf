@@ -3,7 +3,7 @@ data "template_file" "kubeetcd" {
   depends_on = ["null_resource.etcd-discovery-url"]
 
   vars {
-    etcd_discovery_url = "${path.module}/Files/etcd-discovery-url.txt"
+    etcd_discovery_url = "${file("${path.module}/Files/etcd-discovery-url.txt")}"
   }
 }
 
