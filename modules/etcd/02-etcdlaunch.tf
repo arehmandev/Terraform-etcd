@@ -21,8 +21,8 @@ resource "aws_autoscaling_group" "main_asg" {
   depends_on = ["aws_launch_configuration.launch_config"]
   name       = "${var.asg_name}"
 
-  availability_zones  = ["${split(",", var.azs)}"]
-  vpc_zone_identifier = ["${split(",", var.subnet_azs)}"]
+  availability_zones  = ["${var.azs}"]
+  vpc_zone_identifier = ["${var.subnet_azs}"]
 
   launch_configuration = "${aws_launch_configuration.launch_config.id}"
 

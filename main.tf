@@ -40,8 +40,8 @@ module "etcd" {
   asg_number_of_instances         = "${var.asg_number_of_instances}"
   asg_minimum_number_of_instances = "${var.asg_minimum_number_of_instances}"
 
-  azs        = "[${lookup(var.subnetaz1, var.adminregion)}, ${lookup(var.subnetaz2, var.adminregion)}]"
-  subnet_azs = "[${module.base.aws_subnet.public1.id}, ${module.base.aws_subnet.public2.id}, ${module.base.aws_subnet.private1.id}, ${module.base.aws_subnet.private2.id}]"
+  azs        = ["${lookup(var.subnetaz1, var.adminregion)}", "${lookup(var.subnetaz2, var.adminregion)}"]
+  subnet_azs = ["${module.base.aws_subnet.private1.id}", "${module.base.aws_subnet.private2.id}"]
 
   # To include public subnets:
 

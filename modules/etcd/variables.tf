@@ -36,12 +36,14 @@ variable "health_check_type" {
 
 variable "subnet_azs" {
   description = "The VPC subnet IDs"
+  type        = "list"
 
   // comma separated list
 }
 
 variable "azs" {
   description = "Availability Zones"
+  type        = "list"
 
   // comma separated list
 }
