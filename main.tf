@@ -42,4 +42,8 @@ module "etcd" {
 
   azs        = "[${lookup(var.subnetaz1, var.adminregion)}, ${lookup(var.subnetaz2, var.adminregion)}]"
   subnet_azs = "[${module.base.aws_subnet.public1.id}, ${module.base.aws_subnet.public2.id}, ${module.base.aws_subnet.private1.id}, ${module.base.aws_subnet.private2.id}]"
+
+  # To include public subnets:
+
+  #subnet_azs = "[${module.base.aws_subnet.public1.id}, ${module.base.aws_subnet.public2.id}, ${module.base.aws_subnet.private1.id}, ${module.base.aws_subnet.private2.id}]"
 }
