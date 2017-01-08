@@ -1,3 +1,5 @@
 secrets.yml
 *.tfstate*
+terraform.tfstate
+terraform.tfstate.backup
 .terraform/
