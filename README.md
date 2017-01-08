@@ -7,6 +7,7 @@ This script creates:
 - An autoscaling group and launch configuration.
 - Launch config utlizes EC2 userdata template
 - EC2 userdata = cloud-init + local etcd discovery URL generation
+- EC2 security groups, egress = all traffic, ingress locked internally to VPC and variable "myip" (default == 0.0.0.0/0 in tfvars)
 - An IAM role for the etcd instances.
 
 To use:

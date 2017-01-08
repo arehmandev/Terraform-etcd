@@ -1,31 +1,38 @@
-# Default security group limiting:
-# public to 20, 443
-# privately to 80
-# 8080, 8081 locked down to CIDR specified in variables.tf (var.myip)
+#EC2 security groups:
+# egress = all traffic,
+# ingress locked internally to VPC and variable "myip" (default == 0.0.0.0/0 in tfvars)
+
 resource "aws_security_group" "default" {
   name        = "Terraform-dev-securitygroup"
   description = "Public subnet"
   vpc_id      = "${aws_vpc.vpc.id}"
 
-  #inbound rules
+  ### Inbound rules
 
+  # Allows inbound and outbound traffic from all instances in the VPC.
+  ingress {
+    from_port = "0"
+    to_port   = "0"
+    protocol  = "-1"
+    self      = true
+  }
   ingress {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
+    cidr_blocks = ["${var.myip}"]
   }
   ingress {
     from_port   = 80
     to_port     = 80
     protocol    = "tcp"
-    cidr_blocks = ["10.0.0.0/24"]
+    cidr_blocks = ["${var.myip}"]
   }
   ingress {
     from_port   = 443
     to_port     = 443
     protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
+    cidr_blocks = ["${var.myip}"]
   }
   ingress {
     from_port   = 8080
