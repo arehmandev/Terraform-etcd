@@ -25,7 +25,14 @@ Pre-requisites: Terraform, AWS CLI and SSH Keys
 
 Change "myip" in tfvars to your ip to lockdown public instance IPs
 
-###Further info:
+###Version info:
 
  Working and Tested as of 08/01/17
  Terraform version: 0.8.2
+
+### Features to implement in the future:
+
+Etcd discovery as described here:
+http://engineering.monsanto.com/2015/06/12/etcd-clustering/
+
+TLS certs - already underway
