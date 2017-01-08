@@ -1,4 +1,4 @@
-# Terraform scripts for a HA etcd Cluster
+# Terraform scripts for a HA etcd Cluster - Working and Tested as of 08/01/17
 
 This script creates:
 
