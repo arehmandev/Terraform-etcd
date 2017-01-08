@@ -12,7 +12,3 @@ coreos:
       command: start
     - name: fleet.service
       command: start
-  runcmd:
-    - output: {all: '| tee -a /var/log/cloud-init-output.log'}
-    - curl -L http://127.0.0.1:2379/health
-    - wait 60; etcdctl cluster-health

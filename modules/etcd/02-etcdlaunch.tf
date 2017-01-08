@@ -1,5 +1,5 @@
 data "template_file" "kubeetcd" {
-  template   = "${file("${path.module}/Files/kubeetcd.tpl")}"
+  template   = "${file("${path.module}/Files/kubeetcd.yml.tpl")}"
   depends_on = ["null_resource.etcd-discovery-url"]
 
   vars {
