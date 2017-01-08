@@ -12,3 +12,7 @@ coreos:
       command: start
     - name: fleet.service
       command: start
+  coreos:
+  update:
+    reboot-strategy: "etcd-lock"
+manage_etc_hosts: "localhost"
