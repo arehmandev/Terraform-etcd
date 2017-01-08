@@ -12,3 +12,5 @@ coreos:
       command: start
     - name: fleet.service
       command: start
+  runcmd:
+    - echo "$${etcd_discovery_url}" > /var/log/discoveryurl.txt
