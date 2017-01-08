@@ -32,7 +32,11 @@ Change "myip" in tfvars to your ip to lockdown public instance IPs
 
 ### Features to implement in the future:
 
+Integrate with Kubernetes - Terraform scripts
+
 Etcd discovery as described here:
 http://engineering.monsanto.com/2015/06/12/etcd-clustering/
 
 TLS certs - already underway
+
+Improve documentation
