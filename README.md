@@ -2,9 +2,10 @@
 
 ### This script creates:
 
-- 3 x t2.micro CoreOS EC2 instances
+- 3 x t2.micro CoreOS EC2 instances - etcd servers - private subnet
+- 1 x t2.micro CoreOS EC2 instances - bastion (etcd proxy) - public subnet
 - A VPC that spans 2 AZs.
-- 4 Subnets (2 private, 2 public. 1 of each per AZ) - the etcd instances are by default configured to private subnets
+- 4 Subnets (2 private, 2 public. 1 of each per AZ) - the etcd instances = private subnets, etcd proxy = public
 - An autoscaling group and launch configuration.
 - Launch config utlizes EC2 userdata template
 - EC2 userdata = cloud-init + etcd discovery via Monsanto method (referenced below)
