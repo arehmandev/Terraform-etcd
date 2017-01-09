@@ -51,7 +51,7 @@ module "etcd" {
 
 module "etcdbastion" {
   source               = "./modules/etcd-bastion"
-  lc_name              = "${var.lc_name}"
+  lc_name              = "${var.bastion_lc_name}"
   ami_id               = "${lookup(var.coreami, var.adminregion)}"
   instance_type        = "${var.coresize}"
   iam_instance_profile = "${module.iam.worker_profile_name}"
@@ -90,4 +90,3 @@ module "etcd-ca" {
 }
 
 */
-

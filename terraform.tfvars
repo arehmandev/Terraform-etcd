@@ -43,6 +43,7 @@ subnetaz2 = {
 
 # Launch config
 lc_name = "Etcd-lc"
+bastion_lc_name = "Bastion-lc"
 coresize = "t2.micro"
 coreami = {
   us-east-1 = "ami-7ee7e169"
