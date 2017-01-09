@@ -1,10 +1,5 @@
 data "template_file" "kubeetcd" {
-  template   = "${file("${path.module}/Files/kubeetcd.yml.tpl")}"
-  depends_on = ["null_resource.etcd-discovery-url"]
-
-  vars {
-    etcd_discovery_url = "${file("${path.module}/Files/etcd-discovery-url.txt")}"
-  }
+  template = "${file("${path.module}/Files/kubeetcd.yml.tpl")}"
 }
 
 resource "aws_launch_configuration" "launch_config" {

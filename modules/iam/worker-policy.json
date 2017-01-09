@@ -15,6 +15,11 @@
     },
     {
       "Effect": "Allow",
+      "Action": "autoscaling:Describe*",
+      "Resource": "*"
+    },
+    {
+      "Effect": "Allow",
       "Action": "ec2:AttachVolume",
       "Resource": "*"
     },
