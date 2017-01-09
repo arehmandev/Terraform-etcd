@@ -44,3 +44,4 @@ Improve documentation
 - https://github.com/Capgemini/kubeform
 - http://engineering.monsanto.com/2015/06/12/etcd-clustering/
 - https://coreos.com/etcd/docs/latest/v2/clustering.html
+- Kelsey Hightower's stuff
