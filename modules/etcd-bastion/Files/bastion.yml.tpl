@@ -24,6 +24,7 @@ coreos:
         ExecStartPre=/usr/bin/docker pull monsantoco/etcd-aws-cluster:latest
         ExecStartPre=/usr/bin/docker run -e PROXY_ASG=$${var.asg} --rm=true -v /etc/sysconfig/:/etc/sysconfig/ monsantoco/etcd-aws-cluster:latest
         ExecStart=/usr/bin/systemctl start etcd2
+############## Double dollar before var.asg is required due to terraform bug
     - name: fleet.service
       command: start
 write_files:
