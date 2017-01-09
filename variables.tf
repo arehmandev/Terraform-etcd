@@ -45,6 +45,7 @@ variable "subnetaz2" {
 
 # Launch config
 variable "lc_name" {}
+
 variable "bastion_lc_name" {}
 
 variable "coresize" {}
