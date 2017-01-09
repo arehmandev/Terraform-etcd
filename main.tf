@@ -29,7 +29,9 @@ module "iam" {
 module "etcd" {
   source               = "./modules/etcd"
   lc_name              = "${var.lc_name}"
-  ami_id               = "${lookup(var.coreami, var.adminregion)}"
+  ami_name             = "${var.ami_name}"
+  channel              = "${var.channel}"
+  virtualization_type  = "${var.virtualization_type}"
   instance_type        = "${var.coresize}"
   iam_instance_profile = "${module.iam.worker_profile_name}"
   key_name             = "${var.key_name}"
@@ -51,7 +53,9 @@ module "etcd" {
 module "etcdbastion" {
   source               = "./modules/etcd-bastion"
   lc_name              = "${var.bastion_lc_name}"
-  ami_id               = "${lookup(var.coreami, var.adminregion)}"
+  ami_name             = "${var.ami_name}"
+  channel              = "${var.channel}"
+  virtualization_type  = "${var.virtualization_type}"
   instance_type        = "${var.coresize}"
   iam_instance_profile = "${module.iam.worker_profile_name}"
   key_name             = "${var.key_name}"

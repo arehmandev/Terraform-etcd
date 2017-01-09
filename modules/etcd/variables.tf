@@ -2,8 +2,6 @@
 
 variable "lc_name" {}
 
-variable "ami_id" {}
-
 variable "instance_type" {}
 
 variable "iam_instance_profile" {}
@@ -11,6 +9,12 @@ variable "iam_instance_profile" {}
 variable "userdata" {}
 
 variable "key_name" {}
+
+variable "ami_name" {}
+
+variable "channel" {}
+
+variable "virtualization_type" {}
 
 variable "security_group" {
   description = "The security group the instances to use"

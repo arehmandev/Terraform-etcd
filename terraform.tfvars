@@ -39,21 +39,15 @@ subnetaz2 = {
   eu-central-1 = "eu-central-1b"
 }
 
-### module Etcd
+### modules Etcd and Etcd-bastion
 
 # Launch config
 lc_name = "Etcd-lc"
 bastion_lc_name = "Bastion-lc"
 coresize = "t2.micro"
-coreami = {
-  us-east-1 = "ami-7ee7e169"
-  us-east-2 = "ami-f8aaf09d"
-  us-west-1 = "ami-f7df8897"
-  us-west-2 = "ami-d0e54eb0"
-  eu-west-1 = "ami-eb3b6198"
-  eu-west-2 = "ami-ebc0ca8f"
-  eu-central-1 = "ami-f603c599"
-}
+ami_name = "CoreOS"
+channel = "stable"
+virtualization_type ="hvm"
 
 # Autoscaling groups
 asg_name = "Etcd-asg"

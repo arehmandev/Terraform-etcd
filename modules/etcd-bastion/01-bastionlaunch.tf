@@ -6,9 +6,30 @@ data "template_file" "kubebastion" {
   }
 }
 
+data "aws_ami" "coreos" {
+  most_recent = true
+
+  owners = ["679593333241"]
+
+  filter {
+    name   = "architecture"
+    values = ["x86_64"]
+  }
+
+  filter {
+    name   = "virtualization-type"
+    values = ["${var.virtualization_type}"]
+  }
+
+  filter {
+    name   = "name"
+    values = ["${var.ami_name}-${var.channel}-*"]
+  }
+}
+
 resource "aws_launch_configuration" "launch_config" {
   name                 = "${var.lc_name}"
-  image_id             = "${var.ami_id}"
+  image_id             = "${data.aws_ami.coreos.image_id}"
   instance_type        = "${var.instance_type}"
   iam_instance_profile = "${var.iam_instance_profile}"
   key_name             = "${var.key_name}"

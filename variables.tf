@@ -50,9 +50,11 @@ variable "bastion_lc_name" {}
 
 variable "coresize" {}
 
-variable "coreami" {
-  type = "map"
-}
+variable "ami_name" {}
+
+variable "channel" {}
+
+variable "virtualization_type" {}
 
 # Autoscaling groups
 
