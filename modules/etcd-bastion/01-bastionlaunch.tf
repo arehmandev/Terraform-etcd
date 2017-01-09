@@ -2,7 +2,7 @@ data "template_file" "kubebastion" {
   template = "${file("${path.module}/${var.userdata}")}"
 
   vars {
-    asg = "${var.etcdasg}"
+    etcdasg = "${var.etcdasg}"
   }
 }
 
