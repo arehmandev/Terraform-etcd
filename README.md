@@ -35,6 +35,12 @@ Pre-requisites: Terraform, AWS CLI and SSH Keys
 
 Change "myip" in tfvars to your ip to lockdown public instance IPs
 
+Change etcd cluster size by modifying terraform.tfvars: 
+- asg_number_of_instances = "3"
+- asg_minimum_number_of_instances = "3"
+
+Note: cluster size must be an odd number
+
 ###Version info:
 
  Working and Tested as of 08/01/17
