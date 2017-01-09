@@ -54,7 +54,11 @@ coreami = {
   eu-central-1 = "ami-f603c599"
 }
 
-# Autoscaling group
+# Autoscaling groups
 asg_name = "Etcd-asg"
 asg_number_of_instances = "3"
 asg_minimum_number_of_instances = "3"
+
+bastion_asg_name = "Bastion-asg"
+bastion_asg_number_of_instances = "1"
+bastion_asg_minimum_number_of_instances = "1"

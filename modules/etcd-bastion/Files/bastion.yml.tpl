@@ -22,7 +22,7 @@ coreos:
         Restart=on-failure
         RestartSec=10
         ExecStartPre=/usr/bin/docker pull monsantoco/etcd-aws-cluster:latest
-        ExecStartPre=/usr/bin/docker run --rm=true -v /etc/sysconfig/:/etc/sysconfig/ monsantoco/etcd-aws-cluster:latest
+        ExecStartPre=/usr/bin/docker run -e PROXY_ASG=${var.asg} --rm=true -v /etc/sysconfig/:/etc/sysconfig/ monsantoco/etcd-aws-cluster:latest
         ExecStart=/usr/bin/systemctl start etcd2
     - name: fleet.service
       command: start

@@ -35,6 +35,7 @@ module "etcd" {
   iam_instance_profile = "${module.iam.worker_profile_name}"
   key_name             = "${var.key_name}"
   security_group       = "${module.base.aws_security_group.default.id}"
+  userdata             = "Files/kubeetcd.yml.tpl"
 
   asg_name                        = "${var.asg_name}"
   asg_number_of_instances         = "${var.asg_number_of_instances}"
@@ -46,6 +47,28 @@ module "etcd" {
   # To have the etcd instances in public subnets:
 
   #subnet_azs = ["${module.base.aws_subnet.public1.id}", "${module.base.aws_subnet.public2.id}"]
+}
+
+module "etcdbastion" {
+  source               = "./modules/etcd-bastion"
+  lc_name              = "${var.lc_name}"
+  ami_id               = "${lookup(var.coreami, var.adminregion)}"
+  instance_type        = "${var.coresize}"
+  iam_instance_profile = "${module.iam.worker_profile_name}"
+  key_name             = "${var.key_name}"
+  security_group       = "${module.base.aws_security_group.default.id}"
+  userdata             = "Files/bastion.yml.tpl"
+
+  asg_name                        = "${var.bastion_asg_name}"
+  asg_number_of_instances         = "${var.bastion_asg_number_of_instances}"
+  asg_minimum_number_of_instances = "${var.bastion_asg_minimum_number_of_instances}"
+
+  etcdasg = "${module.etcd.asg_id}"
+
+  azs        = ["${lookup(var.subnetaz1, var.adminregion)}", "${lookup(var.subnetaz2, var.adminregion)}"]
+  subnet_azs = ["${module.base.aws_subnet.public1.id}", "${module.base.aws_subnet.public2.id}"]
+
+  # The etcd bastion(s) is spread between the public subnets
 }
 
 /*
@@ -67,4 +90,3 @@ module "etcd-ca" {
 }
 
 */
-

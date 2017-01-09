@@ -16,6 +16,8 @@ variable "security_group" {
   description = "The security group the instances to use"
 }
 
+variable "etcdasg" {}
+
 variable "asg_name" {}
 
 variable "asg_number_of_instances" {

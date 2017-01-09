@@ -52,9 +52,16 @@ variable "coreami" {
   type = "map"
 }
 
-# Autoscaling group
+# Autoscaling groups
+
 variable "asg_name" {}
 
 variable "asg_number_of_instances" {}
 
 variable "asg_minimum_number_of_instances" {}
+
+variable "bastion_asg_name" {}
+
+variable "bastion_asg_number_of_instances" {}
+
+variable "bastion_asg_minimum_number_of_instances" {}

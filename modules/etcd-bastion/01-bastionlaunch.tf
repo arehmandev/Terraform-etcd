@@ -1,5 +1,9 @@
-data "template_file" "kubeetcd" {
+data "template_file" "kubebastion" {
   template = "${file("${path.module}/${var.userdata}")}"
+
+  vars {
+    asg = "${var.etcdasg}"
+  }
 }
 
 resource "aws_launch_configuration" "launch_config" {
@@ -9,10 +13,10 @@ resource "aws_launch_configuration" "launch_config" {
   iam_instance_profile = "${var.iam_instance_profile}"
   key_name             = "${var.key_name}"
   security_groups      = ["${var.security_group}"]
-  user_data            = "${data.template_file.kubeetcd.rendered}"
+  user_data            = "${data.template_file.kubebastion.rendered}"
 }
 
-resource "aws_autoscaling_group" "main_asg" {
+resource "aws_autoscaling_group" "bastion_asg" {
   depends_on = ["aws_launch_configuration.launch_config"]
   name       = "${var.asg_name}"
 
