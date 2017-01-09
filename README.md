@@ -22,6 +22,15 @@ Pre-requisites: Terraform, AWS CLI and SSH Keys
 3. terraform apply
 ```
 
+### To check if its function correctly:
+
+```
+1. SSH into the bastion
+2. Run "etcdctl cluster-health"
+3. If 3 nodes show as healthy, you're good to go, else destroy and retry
+```
+
+
 ### Extra steps:
 
 Change "myip" in tfvars to your ip to lockdown public instance IPs
