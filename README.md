@@ -36,12 +36,10 @@ Integrate with Kubernetes - Terraform scripts
 
 TLS certs - already underway
 
-Etcd discovery as described here:
-
 Improve documentation
 
 ### References
 
-https://github.com/Capgemini/kubeform
-http://engineering.monsanto.com/2015/06/12/etcd-clustering/
-https://coreos.com/etcd/docs/latest/v2/clustering.html
+- https://github.com/Capgemini/kubeform
+- http://engineering.monsanto.com/2015/06/12/etcd-clustering/
+- https://coreos.com/etcd/docs/latest/v2/clustering.html
