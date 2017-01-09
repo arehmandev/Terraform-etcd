@@ -4,8 +4,8 @@ provider "aws" {
 }
 
 module "base" {
-  adminregion     = "${var.adminregion}"
   source          = "./modules/base"
+  adminregion     = "${var.adminregion}"
   key_name        = "${var.key_name}"
   public_key_path = "${var.public_key_path}"
 
