@@ -10,6 +10,8 @@ variable "userdata" {}
 
 variable "key_name" {}
 
+variable "ownerid" {}
+
 variable "ami_name" {}
 
 variable "channel" {}

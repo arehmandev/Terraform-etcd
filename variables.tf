@@ -50,6 +50,8 @@ variable "bastion_lc_name" {}
 
 variable "coresize" {}
 
+variable "ownerid" {}
+
 variable "ami_name" {}
 
 variable "channel" {}

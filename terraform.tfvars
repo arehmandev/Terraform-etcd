@@ -45,6 +45,7 @@ subnetaz2 = {
 lc_name = "Etcd-lc"
 bastion_lc_name = "Bastion-lc"
 coresize = "t2.micro"
+ownerid = "595879546273"
 ami_name = "CoreOS"
 channel = "stable"
 virtualization_type ="hvm"

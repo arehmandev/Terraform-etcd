@@ -29,6 +29,7 @@ module "iam" {
 module "etcd" {
   source               = "./modules/etcd"
   lc_name              = "${var.lc_name}"
+  ownerid              = "${var.ownerid}"
   ami_name             = "${var.ami_name}"
   channel              = "${var.channel}"
   virtualization_type  = "${var.virtualization_type}"
@@ -53,6 +54,7 @@ module "etcd" {
 module "etcdbastion" {
   source               = "./modules/etcd-bastion"
   lc_name              = "${var.bastion_lc_name}"
+  ownerid              = "${var.ownerid}"
   ami_name             = "${var.ami_name}"
   channel              = "${var.channel}"
   virtualization_type  = "${var.virtualization_type}"

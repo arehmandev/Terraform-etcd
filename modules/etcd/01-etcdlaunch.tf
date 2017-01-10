@@ -2,10 +2,10 @@ data "template_file" "kubeetcd" {
   template = "${file("${path.module}/${var.userdata}")}"
 }
 
-data "aws_ami" "coreos" {
+data "aws_ami" "coreos_etcd" {
   most_recent = true
 
-  owners = ["679593333241"]
+  owners = ["${var.ownerid}"]
 
   filter {
     name   = "architecture"
@@ -25,7 +25,7 @@ data "aws_ami" "coreos" {
 
 resource "aws_launch_configuration" "launch_config" {
   name                 = "${var.lc_name}"
-  image_id             = "${data.aws_ami.coreos.image_id}"
+  image_id             = "${data.aws_ami.coreos_etcd.image_id}"
   instance_type        = "${var.instance_type}"
   iam_instance_profile = "${var.iam_instance_profile}"
   key_name             = "${var.key_name}"
