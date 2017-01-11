@@ -76,23 +76,24 @@ module "etcdbastion" {
   # The etcd bastion(s) is spread between the public subnets
 }
 
-/*
+module "extractip" {
+  source = "./modules/extract"
+  ipfile = "Files/iplist.txt"
+  asg    = "${module.etcd.asg_id}"
+}
 
 module "certauth" {
   source   = "./modules/tls/ca"
-  capem    = "certauth.pem"
+  capem    = "ca.pem"
   keypem   = "certauthkey.pem"
-  iplistca = "${concat(values(var.etcd_ips), values(var.kubemaster_ips), values(var.kubenode_ips))}"
+  iplistca = "${split(",", module.extractip.ipcontent)}"
 }
 
 module "etcd-ca" {
   source             = "./modules/tls/etcd"
-  capem              = "etcdcert.pem"
+  capem              = "etcd.pem"
   keypem             = "etcdkey.pem"
-  iplistca           = "${values(var.etcd_ips)}"
+  iplistca           = "${split(",", module.extractip.ipcontent)}"
   ca_cert_pem        = "${module.certauth.ca_cert_pem}"
   ca_private_key_pem = "${module.certauth.ca_private_key_pem}"
 }
-
-*/
-

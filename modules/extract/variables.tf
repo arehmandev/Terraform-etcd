@@ -1,0 +1,3 @@
+variable "asg" {}
+
+variable "ipfile" {}
