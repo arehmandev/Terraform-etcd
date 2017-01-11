@@ -1,7 +1,7 @@
 build:
   image: alpine:latest
   environment:
-    - TERRAFORM_VERSION=0.8.1
+    - TERRAFORM_VERSION=0.8.3
     - AWS_DEFAULT_REGION=$$REGION
     - AWS_ACCESS_KEY_ID=$$USERKEY
     - AWS_SECRET_ACCESS_KEY=$$SECRETKEY

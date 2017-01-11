@@ -43,8 +43,8 @@ Note: cluster size must be an odd number
 
 ###Version info:
 
- Working and Tested as of 08/01/17
- Terraform version: 0.8.2
+ Working and Tested as of 10/01/17
+ Terraform version: 0.8.3
 
 ### Features to implement in the future:
 
