@@ -17,6 +17,11 @@ data "aws_ami" "coreos_bastion" {
   }
 
   filter {
+    name   = "root-device-type"
+    values = ["ebs"]
+  }
+
+  filter {
     name   = "virtualization-type"
     values = ["${var.virtualization_type}"]
   }
