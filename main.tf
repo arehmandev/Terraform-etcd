@@ -27,13 +27,16 @@ module "iam" {
 }
 
 module "etcd" {
-  source               = "./modules/etcd"
-  adminregion          = "${var.adminregion}"
-  certauthbucket       = "${var.certauthbucket}"
-  cacertobject         = "${var.cacertobject}"
-  etcdbucket           = "${var.etcdbucket}"
-  etcdcertobject       = "${var.etcdcertobject}"
-  etcdkeyobject        = "${var.etcdkeyobject}"
+  source      = "./modules/etcd"
+  adminregion = "${var.adminregion}"
+
+  #Template variables
+  certauthbucket = "${var.certauthbucket}"
+  cacertobject   = "${var.cacertobject}"
+  etcdbucket     = "${var.etcdbucket}"
+  etcdcertobject = "${var.etcdcertobject}"
+  etcdkeyobject  = "${var.etcdkeyobject}"
+
   lc_name              = "${var.lc_name}"
   ownerid              = "${var.ownerid}"
   ami_name             = "${var.ami_name}"
