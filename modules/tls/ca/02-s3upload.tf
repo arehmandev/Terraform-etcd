@@ -12,8 +12,20 @@ data "template_file" "kmspolicy" {
   template = "${file("${path.module}/Files/kmspolicy.json.tpl")}"
 
   vars {
-    arn     = "${var.accessarn}"
-    rootarn = "${var.rootarn}"
+    arn     = "${file("${path.module}/worker_role_arn.txt")}"
+    rootarn = "${file("${path.module}/rootarn.txt")}"
+  }
+}
+
+resource "null_resource" "worker_role_arn" {
+  provisioner "local-exec" {
+    command = "bash ${path.module}/Files/workarn.sh > ${path.module}/worker_role_arn.txt"
+  }
+}
+
+resource "null_resource" "arn" {
+  provisioner "local-exec" {
+    command = "bash ${path.module}/Files/workarn.sh > ${path.module}/rootarn.txt"
   }
 }
 
