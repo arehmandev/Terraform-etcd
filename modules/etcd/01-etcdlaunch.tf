@@ -1,5 +1,14 @@
 data "template_file" "kubeetcd" {
   template = "${file("${path.module}/${var.userdata}")}"
+
+  vars {
+    region         = "${var.adminregion}"
+    certauthbucket = "${var.certauthbucket}"
+    cacertobject   = "${var.cacertobject}"
+    etcdbucket     = "${var.etcdbucket}"
+    etcdcertobject = "${var.etcdcertobject}"
+    etcdkeyobject  = "${var.etcdkeyobject}"
+  }
 }
 
 data "aws_ami" "coreos_etcd" {

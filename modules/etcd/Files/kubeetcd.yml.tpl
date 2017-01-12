@@ -33,16 +33,17 @@ write_files:
         [Service]
         EnvironmentFile=/etc/sysconfig/etcd-peers
 
-#    - path: /run/systemd/system/etcd.service.d/30-certificates.conf
-#      permissions: 0644
-#      content: |
-#        [Service]
-#        Environment=ETCD_CA_FILE=/etc/ssl/etcd/certs/ca.pem
-#        Environment=ETCD_CERT_FILE=/etc/ssl/etcd/certs/etcd.pem
-#        Environment=ETCD_KEY_FILE=/etc/ssl/etcd/private/etcd.pem
-#        Environment=ETCD_PEER_CA_FILE=/etc/ssl/etcd/certs/ca.pem
-#        Environment=ETCD_PEER_CERT_FILE=/etc/ssl/etcd/certs/etcd.pem
-#        Environment=ETCD_PEER_KEY_FILE=/etc/ssl/etcd/private/etcd.pem
+    - path: /run/systemd/system/etcd.service.d/30-certificates.conf
+      permissions: 0644
+      content: |
+        [Service]
+        Environment=ETCD_CA_FILE=/etc/ssl/etcd/certs/ca.pem
+        Environment=ETCD_CERT_FILE=/etc/ssl/etcd/certs/etcd.pem
+        Environment=ETCD_KEY_FILE=/etc/ssl/etcd/private/etcd.pem
+        Environment=ETCD_PEER_CA_FILE=/etc/ssl/etcd/certs/ca.pem
+        Environment=ETCD_PEER_CERT_FILE=/etc/ssl/etcd/certs/etcd.pem
+        Environment=ETCD_PEER_KEY_FILE=/etc/ssl/etcd/private/etcd.pem
+
 #    - path: /etc/ssl/etcd/certs/ca.pem
 #      permissions: 0644
 #      content: "$${etcd_ca}"
@@ -58,6 +59,10 @@ write_files:
 
 manage_etc_hosts: localhost
 
-#runcmd:
-#  - docker run -v /etc/kubernetes/ssl/:/certs garland/aws-cli-docker aws s3api get-object --bucket kubernetes-certauthbucket --key ca.pem --region=region /certs/ca.pem
+runcmd:
+  - docker run -v /etc/ssl/etcd/certs:/certs garland/aws-cli-docker aws s3api get-object --bucket ${certauthbucket} --key ${cacertobject} --region=${region} /certs/ca.pem
+  - docker run -v /etc/ssl/etcd/certs:/certs garland/aws-cli-docker aws s3api get-object --bucket ${etcdbucket} --key ${etcdcertobject} --region=${region} /certs/etcd.pem
+  - docker run -v /etc/ssl/etcd/private:/certs garland/aws-cli-docker aws s3api get-object --bucket ${etcdbucket} --key ${etcdkeyobject} --region=${region} /certs/etcd.pem
+
+
 #### under development

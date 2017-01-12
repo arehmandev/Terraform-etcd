@@ -1,5 +1,18 @@
 ### Module etcd
 
+# template variables
+variable "adminregion" {}
+
+variable "certauthbucket" {}
+
+variable "cacertobject" {}
+
+variable "etcdbucket" {}
+
+variable "etcdcertobject" {}
+
+variable "etcdkeyobject" {}
+
 variable "lc_name" {}
 
 variable "instance_type" {}
