@@ -21,9 +21,6 @@ resource "aws_kms_key" "examplekms" {
   description             = "KMS key 1"
   deletion_window_in_days = 7
   policy                  = "${data.template_file.kmspolicy.rendered}"
-  tags {
-    Name = "etcdKMSkey"
-  }
 }
 
 resource "aws_s3_bucket_object" "certobject" {
