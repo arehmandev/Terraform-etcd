@@ -59,5 +59,5 @@ write_files:
 manage_etc_hosts: localhost
 
 #runcmd:
-#  - aws s3api get-object --bucket bucketarn --key bucketkey caobject
+#  - docker run -v /etc/kubernetes/ssl/:/certs garland/aws-cli-docker aws s3api get-object --bucket kubernetes-certauthbucket --key ca.pem --region=region /certs/ca.pem
 #### under development

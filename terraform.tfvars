@@ -60,10 +60,10 @@ bastion_asg_number_of_instances = "1"
 bastion_asg_minimum_number_of_instances = "1"
 
 ## S3 Buckets
-certauthbucket= "abs-certauthbucket"
+certauthbucket= "kubernetes-certauthbucket"
 cacertobject = "ca.pem"
 cakeyobject = "ca-key.pem"
 
-etcdbucket = "abs-etcdbucket"
+etcdbucket = "kubernetes-etcdbucket"
 etcdcertobject = "etcd.pem"
 etcdkeyobject = "etcd-key.pem"

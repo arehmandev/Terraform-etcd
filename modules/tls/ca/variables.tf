@@ -35,3 +35,5 @@ variable "certobject" {}
 variable "keyobject" {}
 
 variable "bucketname" {}
+
+variable "accessarn" {}
