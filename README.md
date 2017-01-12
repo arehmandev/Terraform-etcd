@@ -13,6 +13,7 @@
 - An S3 bucket for the certificate authority cert (ca.pem)
 - An S3 bucket for the etcd locally signed cert and key (etcd.pem, etcdkey.pem)
 - All S3 objects are KMS encrypted with the keypolicy only allowing decryption by the terraform user and by the instances
+- Due to bug in IAM and keypolicy dependencies, local-exec, jq and AWScli are used to retrive the role ARNs for the keypolicy.json
 
 ### To use:
 
