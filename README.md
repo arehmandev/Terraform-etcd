@@ -1,5 +1,5 @@
 # Terraform scripts for a HA etcd Cluster
-
+# Currently being changed with SSL fixes
 ### This script creates:
 
 - 3 x t2.micro CoreOS EC2 instances - etcd servers - private subnet

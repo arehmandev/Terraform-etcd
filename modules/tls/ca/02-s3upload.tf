@@ -13,6 +13,7 @@ data "template_file" "kmspolicy" {
 
   vars {
     arn = "${var.accessarn}"
+    rootarn = "${var.rootarn}"
   }
 }
 

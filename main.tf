@@ -100,6 +100,7 @@ module "certauth" {
   certobject = "${var.cacertobject}"
   keyobject  = "${var.cakeyobject}"
   accessarn  = "${module.iam.worker_role_arn}"
+  rootarn = "${var.rootarn}"
 }
 
 module "etcd-ca" {
@@ -113,4 +114,5 @@ module "etcd-ca" {
   certobject         = "${var.etcdcertobject}"
   keyobject          = "${var.etcdkeyobject}"
   accessarn          = "${module.iam.worker_role_arn}"
+  rootarn = "${var.rootarn}"
 }

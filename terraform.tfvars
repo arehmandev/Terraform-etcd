@@ -67,3 +67,5 @@ cakeyobject = "ca-key.pem"
 etcdbucket = "kubernetes-etcdbucket"
 etcdcertobject = "etcd.pem"
 etcdkeyobject = "etcd-key.pem"
+
+rootarn = "arn:aws:iam::801551588932:root"

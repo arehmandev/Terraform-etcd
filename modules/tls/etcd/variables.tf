@@ -27,3 +27,4 @@ variable "keyobject" {}
 variable "bucketname" {}
 
 variable "accessarn" {}
+variable "rootarn" {}
