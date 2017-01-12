@@ -58,6 +58,6 @@ write_files:
 
 manage_etc_hosts: localhost
 
-runcmd:
-  - aws s3api get-object --bucket bucketarn --key bucketkey caobject
+#runcmd:
+#  - aws s3api get-object --bucket bucketarn --key bucketkey caobject
 #### under development
