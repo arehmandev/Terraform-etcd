@@ -1,0 +1,1 @@
+arn:aws:iam::801551588932:role/worker_role

@@ -8,29 +8,7 @@ resource "aws_s3_bucket" "etcdbucket" {
   }
 }
 
-data "template_file" "kmspolicy" {
-  template = "${file("${path.module}/Files/kmspolicy.json.tpl")}"
-
-  vars {
-    arn     = "${file("${path.module}/worker_role_arn.txt")}"
-    rootarn = "${file("${path.module}/rootarn.txt")}"
-  }
-}
-
-resource "null_resource" "worker_role_arn" {
-  provisioner "local-exec" {
-    command = "bash ${path.module}/Files/workarn.sh > ${path.module}/worker_role_arn.txt"
-  }
-}
-
-resource "null_resource" "arn" {
-  provisioner "local-exec" {
-    command = "bash ${path.module}/Files/workarn.sh > ${path.module}/rootarn.txt"
-  }
-}
-
 resource "aws_kms_key" "examplekms" {
-  depends_on              = ["data.template_file.kmspolicy"]
   description             = "KMS key 1"
   deletion_window_in_days = 7
   policy                  = "${data.template_file.kmspolicy.rendered}"
