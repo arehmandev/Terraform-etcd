@@ -1,4 +1,6 @@
 resource "null_resource" "workerarn" {
+  depends_on = ["aws_s3_bucket.certauthbucket"]
+
   provisioner "local-exec" {
     command = "bash ${path.module}/Files/workerarn.sh > ${path.module}/Files/worker_role_arn.txt"
   }
