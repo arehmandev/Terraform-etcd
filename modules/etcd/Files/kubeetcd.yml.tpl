@@ -13,6 +13,19 @@ coreos:
   units:
     - name: etcd2.service
       command: stop
+    - name: etcd-ssl-keys.service
+      command: start
+      content: |
+        [Unit]
+        Description=General SSL certs for etcd
+        [Service]
+        Restart=on-failure
+        RestartSec=300
+        ExecStartPre=/usr/bin/docker pull garland/aws-cli-docker:latest
+        ExecStartPre=/usr/bin/docker run -v /etc/ssl/etcd/certs:/certs garland/aws-cli-docker aws s3api get-object --bucket ${certauthbucket} --key ${cacertobject} --region=${region} /certs/ca.pem
+        ExecStartPre=/usr/bin/docker run -v /etc/ssl/etcd/certs:/certs garland/aws-cli-docker aws s3api get-object --bucket ${etcdbucket} --key ${etcdcertobject} --region=${region} /certs/etcd.pem
+        ExecStartPre=/usr/bin/docker run -v /etc/ssl/etcd/private:/certs garland/aws-cli-docker aws s3api get-object --bucket ${etcdbucket} --key ${etcdkeyobject} --region=${region} /certs/etcd.pem
+        ExecStart=/usr/bin/chmod 0644 /etc/ssl/etcd/certs/ca.pem /etc/ssl/etcd/certs/etcd.pem /etc/ssl/etcd/private/etcd.pem
     - name: etcd-peers.service
       command: start
       content: |
@@ -32,7 +45,6 @@ write_files:
       content: |
         [Service]
         EnvironmentFile=/etc/sysconfig/etcd-peers
-
     - path: /run/systemd/system/etcd.service.d/30-certificates.conf
       permissions: 0644
       content: |
@@ -43,28 +55,4 @@ write_files:
         Environment=ETCD_PEER_CA_FILE=/etc/ssl/etcd/certs/ca.pem
         Environment=ETCD_PEER_CERT_FILE=/etc/ssl/etcd/certs/etcd.pem
         Environment=ETCD_PEER_KEY_FILE=/etc/ssl/etcd/private/etcd.pem
-
-#    - path: /etc/ssl/etcd/certs/ca.pem
-#      permissions: 0644
-#      content: "$${etcd_ca}"
-#    - path: /etc/ssl/etcd/certs/etcd.pem
-#      permissions: 0644
-#      content: "$${etcd_cert}"
-#    - path: /etc/ssl/etcd/private/etcd.pem
-#      permissions: 0644
-#      content: "$${etcd_key}"
-#
-# Note: uncomment and remove 1 dollar sign before each variable to activate TLS generation
-# TLS module is currently being developed, so don't do that yet :)
-
 manage_etc_hosts: localhost
-
-runcmd:
-  - docker run -v /etc/ssl/etcd/certs:/certs garland/aws-cli-docker aws s3api get-object --bucket ${certauthbucket} --key ${cacertobject} --region=${region} /certs/ca.pem
-  - docker run -v /etc/ssl/etcd/certs:/certs garland/aws-cli-docker aws s3api get-object --bucket ${etcdbucket} --key ${etcdcertobject} --region=${region} /certs/etcd.pem
-  - docker run -v /etc/ssl/etcd/private:/certs garland/aws-cli-docker aws s3api get-object --bucket ${etcdbucket} --key ${etcdkeyobject} --region=${region} /certs/etcd.pem
-  - chmod 0644 /etc/ssl/etcd/certs/ca.pem
-  - chmod 0644 /etc/ssl/etcd/certs/etcd.pem
-  - chmod 0644 /etc/ssl/etcd/private/etcd.pem
-
-#### under development
