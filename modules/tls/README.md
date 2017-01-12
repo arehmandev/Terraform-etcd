@@ -1,1 +1,1 @@
-This parts currently under development
+Under development

@@ -83,10 +83,13 @@ module "extractip" {
 }
 
 module "certauth" {
-  source   = "./modules/tls/ca"
-  capem    = "ca.pem"
-  keypem   = "certauthkey.pem"
-  iplistca = "${split(",", module.extractip.ipcontent)}"
+  source     = "./modules/tls/ca"
+  capem      = "ca.pem"
+  keypem     = "certauthkey.pem"
+  iplistca   = "${split(",", module.extractip.ipcontent)}"
+  bucketname = "${var.certauthbucket}"
+  certobject = "${var.cacertobject}"
+  keyobject  = "${var.cakeyobject}"
 }
 
 module "etcd-ca" {
@@ -96,4 +99,7 @@ module "etcd-ca" {
   iplistca           = "${split(",", module.extractip.ipcontent)}"
   ca_cert_pem        = "${module.certauth.ca_cert_pem}"
   ca_private_key_pem = "${module.certauth.ca_private_key_pem}"
+  bucketname         = "${var.etcdbucket}"
+  certobject         = "${var.etcdcertobject}"
+  keyobject          = "${var.etcdkeyobject}"
 }

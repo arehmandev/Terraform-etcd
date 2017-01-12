@@ -17,3 +17,11 @@ variable "iplistca" {
 variable "capem" {}
 
 variable "keypem" {}
+
+### S3 bucket
+
+variable "certobject" {}
+
+variable "keyobject" {}
+
+variable "bucketname" {}

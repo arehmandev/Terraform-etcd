@@ -71,3 +71,17 @@ variable "bastion_asg_name" {}
 variable "bastion_asg_number_of_instances" {}
 
 variable "bastion_asg_minimum_number_of_instances" {}
+
+## S3 Buckets
+
+variable "certauthbucket" {}
+
+variable "cacertobject" {}
+
+variable "cakeyobject" {}
+
+variable "etcdbucket" {}
+
+variable "etcdcertobject" {}
+
+variable "etcdkeyobject" {}

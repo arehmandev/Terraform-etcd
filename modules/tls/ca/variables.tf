@@ -22,8 +22,16 @@ variable "common_name" {
 # names of the pem files generated defined when the module is called and the IP settings for CA
 variable "capem" {}
 
-variable "keypem" {}
-
 variable "iplistca" {
   type = "list"
 }
+
+variable "keypem" {}
+
+### S3 bucket
+
+variable "certobject" {}
+
+variable "keyobject" {}
+
+variable "bucketname" {}

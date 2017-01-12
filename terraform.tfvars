@@ -58,3 +58,12 @@ asg_minimum_number_of_instances = "3"
 bastion_asg_name = "Bastion-asg"
 bastion_asg_number_of_instances = "1"
 bastion_asg_minimum_number_of_instances = "1"
+
+## S3 Buckets
+certauthbucket= "abs-certauthbucket"
+cacertobject = "ca.pem"
+cakeyobject = "ca-key.pem"
+
+etcdbucket = "abs-etcdbucket"
+etcdcertobject = "etcd.pem"
+etcdkeyobject = "etcd-key.pem"

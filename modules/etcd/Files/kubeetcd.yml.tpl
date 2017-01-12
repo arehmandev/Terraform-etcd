@@ -57,3 +57,7 @@ write_files:
 # TLS module is currently being developed, so don't do that yet :)
 
 manage_etc_hosts: localhost
+
+runcmd:
+  - aws s3api get-object --bucket bucketarn --key bucketkey caobject
+#### under development
