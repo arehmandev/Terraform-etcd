@@ -2,7 +2,13 @@ data "template_file" "kubebastion" {
   template = "${file("${path.module}/${var.userdata}")}"
 
   vars {
-    etcdasg = "${var.etcdasg}"
+    etcdasg        = "${var.etcdasg}"
+    region         = "${var.adminregion}"
+    certauthbucket = "${var.certauthbucket}"
+    cacertobject   = "${var.cacertobject}"
+    etcdbucket     = "${var.etcdbucket}"
+    etcdcertobject = "${var.etcdcertobject}"
+    etcdkeyobject  = "${var.etcdkeyobject}"
   }
 }
 

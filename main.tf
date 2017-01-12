@@ -27,10 +27,10 @@ module "iam" {
 }
 
 module "etcd" {
-  source      = "./modules/etcd"
-  adminregion = "${var.adminregion}"
+  source = "./modules/etcd"
 
   #Template variables
+  adminregion    = "${var.adminregion}"
   certauthbucket = "${var.certauthbucket}"
   cacertobject   = "${var.cacertobject}"
   etcdbucket     = "${var.etcdbucket}"
@@ -61,7 +61,16 @@ module "etcd" {
 }
 
 module "etcdbastion" {
-  source               = "./modules/etcd-bastion"
+  source = "./modules/etcd-bastion"
+
+  #Template variables
+  adminregion    = "${var.adminregion}"
+  certauthbucket = "${var.certauthbucket}"
+  cacertobject   = "${var.cacertobject}"
+  etcdbucket     = "${var.etcdbucket}"
+  etcdcertobject = "${var.etcdcertobject}"
+  etcdkeyobject  = "${var.etcdkeyobject}"
+
   lc_name              = "${var.bastion_lc_name}"
   ownerid              = "${var.ownerid}"
   ami_name             = "${var.ami_name}"

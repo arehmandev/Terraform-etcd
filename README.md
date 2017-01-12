@@ -1,5 +1,4 @@
 # Terraform scripts for a HA etcd Cluster
-# Currently being changed with SSL fixes
 ### This script creates:
 
 - 3 x t2.micro CoreOS EC2 instances - etcd servers - private subnet
@@ -8,9 +7,12 @@
 - 4 Subnets (2 private, 2 public. 1 of each per AZ) - the etcd instances = private subnets, etcd proxy = public
 - An autoscaling group and launch configuration.
 - Launch config utlizes EC2 userdata template
-- EC2 userdata = cloud-init + etcd discovery via Monsanto method (referenced below)
+- EC2 userdata = cloud-init + etcd discovery via Monsanto method (referenced below) + etcd certs via aws s3getobject container
 - EC2 security groups, egress = all traffic, ingress locked internally to VPC and variable "myip" (default == 0.0.0.0/0 in tfvars)
 - An IAM role for the etcd instances.
+- An S3 bucket for the certificate authority cert (ca.pem)
+- An S3 bucket for the etcd locally signed cert and key (etcd.pem, etcdkey.pem)
+- All S3 objects are KMS encrypted with the keypolicy only allowing decryption by the terraform user and by the instances
 
 ### To use:
 
@@ -50,7 +52,7 @@ Note: cluster size must be an odd number
 
 Integrate with Kubernetes - Terraform scripts
 
-TLS certs - already underway
+Use a dynamic method of regenerating the SSL certificate on each new node
 
 Improve documentation
 

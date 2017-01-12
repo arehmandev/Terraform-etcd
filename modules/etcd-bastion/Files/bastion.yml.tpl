@@ -13,6 +13,19 @@ coreos:
   units:
     - name: etcd2.service
       command: stop
+    - name: etcd-ssl-keys.service
+      command: start
+      content: |
+        [Unit]
+        Description=General SSL certs for etcd
+        [Service]
+        Restart=on-failure
+        RestartSec=300
+        ExecStartPre=/usr/bin/docker pull garland/aws-cli-docker:latest
+        ExecStartPre=/usr/bin/docker run -v /etc/ssl/etcd/certs:/certs garland/aws-cli-docker aws s3api get-object --bucket ${certauthbucket} --key ${cacertobject} --region=${region} /certs/ca.pem
+        ExecStartPre=/usr/bin/docker run -v /etc/ssl/etcd/certs:/certs garland/aws-cli-docker aws s3api get-object --bucket ${etcdbucket} --key ${etcdcertobject} --region=${region} /certs/etcd.pem
+        ExecStartPre=/usr/bin/docker run -v /etc/ssl/etcd/private:/certs garland/aws-cli-docker aws s3api get-object --bucket ${etcdbucket} --key ${etcdkeyobject} --region=${region} /certs/etcd.pem
+        ExecStart=/usr/bin/chmod 0644 /etc/ssl/etcd/certs/ca.pem /etc/ssl/etcd/certs/etcd.pem /etc/ssl/etcd/private/etcd.pem
     - name: etcd-peers.service
       command: start
       content: |
