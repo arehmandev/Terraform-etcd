@@ -6,7 +6,7 @@
       "Sid": "Enable IAM User Permissions",
       "Effect": "Allow",
       "Principal": {
-        "AWS": " ${arn} "
+        "AWS": "${arn}"
       },
       "Action": "kms:*",
       "Resource": "*"

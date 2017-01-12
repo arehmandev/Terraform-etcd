@@ -63,6 +63,8 @@ runcmd:
   - docker run -v /etc/ssl/etcd/certs:/certs garland/aws-cli-docker aws s3api get-object --bucket ${certauthbucket} --key ${cacertobject} --region=${region} /certs/ca.pem
   - docker run -v /etc/ssl/etcd/certs:/certs garland/aws-cli-docker aws s3api get-object --bucket ${etcdbucket} --key ${etcdcertobject} --region=${region} /certs/etcd.pem
   - docker run -v /etc/ssl/etcd/private:/certs garland/aws-cli-docker aws s3api get-object --bucket ${etcdbucket} --key ${etcdkeyobject} --region=${region} /certs/etcd.pem
-
+  - chmod 0644 /etc/ssl/etcd/certs/ca.pem
+  - chmod 0644 /etc/ssl/etcd/certs/etcd.pem
+  - chmod 0644 /etc/ssl/etcd/private/etcd.pem
 
 #### under development
