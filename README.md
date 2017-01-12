@@ -14,7 +14,7 @@
 
 ### To use:
 
-Pre-requisites: Terraform, AWS CLI and SSH Keys
+Pre-requisites: Terraform, jq, AWS CLI and SSH Keys
 
 ```
 1. Modify terraform.tfvars as you wish
@@ -35,7 +35,7 @@ Pre-requisites: Terraform, AWS CLI and SSH Keys
 
 Change "myip" in tfvars to your ip to lockdown public instance IPs
 
-Change etcd cluster size by modifying terraform.tfvars: 
+Change etcd cluster size by modifying terraform.tfvars:
 - asg_number_of_instances = "3"
 - asg_minimum_number_of_instances = "3"
 
