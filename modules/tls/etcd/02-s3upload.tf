@@ -12,7 +12,7 @@ data "template_file" "kmspolicy" {
   template = "${file("${path.module}/Files/kmspolicy.json.tpl")}"
 
   vars {
-    accessarn = "${var.accessarn}"
+    arn = "${var.accessarn}"
   }
 }
 

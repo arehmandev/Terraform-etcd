@@ -4,7 +4,7 @@ output "master_profile_name" {
 }
 
 output "master_role_arn" {
-  value = "${aws_iam_role_policy.master_policy.arn}"
+  value = "${aws_iam_role.master_role.arn}"
 }
 
 output "worker_profile_name" {
@@ -12,5 +12,5 @@ output "worker_profile_name" {
 }
 
 output "worker_role_arn" {
-  value = "${aws_iam_role_policy.worker_policy.arn}"
+  value = "${aws_iam_role.worker_role.arn}"
 }
