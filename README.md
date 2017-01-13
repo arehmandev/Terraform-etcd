@@ -15,6 +15,9 @@
 - All S3 objects are KMS encrypted with the keypolicy only allowing decryption by the terraform user and by the instances
 - Due to bug in IAM and keypolicy dependencies, local-exec, jq and AWScli are used to retrive the role ARNs for the keypolicy.json
 
+### To Improve:
+- I am currently waiting on module dependencies to be implemented: https://github.com/hashicorp/terraform/issues/10462
+
 ### To use:
 
 Pre-requisites: Terraform, jq, AWS CLI and SSH Keys
