@@ -8,7 +8,7 @@ resource "null_resource" "workerarn" {
 
 resource "null_resource" "arn" {
   provisioner "local-exec" {
-    command = "bash ${path.module}/Files/rootarn.sh > ${path.module}/Files/root_arn.txt"
+    command = "echo arn:aws:iam::$(bash ${path.module}/Files/rootarn.sh):root > ${path.module}/Files/root_arn.txt"
   }
 }
 
